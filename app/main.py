@@ -7,6 +7,10 @@ from typing import Optional
 
 app = FastAPI(title="Looma - Personal Finance API")
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Looma API!"}
+
 @app.post("/transactions")
 def add_transaction(transaction: Transaction):
     result = db.transactions.insert_one(transaction.model_dump())
